@@ -31,11 +31,13 @@ def getStopWordGraph(Corpus, stopwords):
 	return(a)
 #calculates Kullback-Leibler Divergence for P and Q
 def KullLeibDiv(P, Q):
+	eps = np.finfo(float).eps
 	KL1 = 0
 	KL2 = 0
 	for i in range (0, len(P)):
-		if (P[i]!=0 and Q[i]!=0):
+		if (Q[i]!=eps):
 			KL1 = KL1 + P[i] * math.log(P[i]/Q[i])
+		if (P[i]!=eps):
 			KL2 = KL2 + Q[i] * math.log(Q[i]/P[i])
 	KL = (KL1 + KL2)/2
 	return(KL)
@@ -82,36 +84,51 @@ def authorKLdiv(G1,G2,GTst):
 		kl2 = KullLeibDiv(G2[i],GTst[i])
 		KL1 = KL1 + kl1
 		KL2 = KL2 + kl2
+	print(type(KL1))
+	print(KL1)
+	print(KL2)
 	if (KL1<KL2):
 		return 1
+	if (KL1==KL2):
+		return 0
 	else:
 		return 2
 
 #puts corpus in the right form, removes punctuation marks etc. from corpus
-def prepareCorpus(Corpus):
-	Corpus = line.split()
+def prepareCorpus(C):
+	Corpus1 = []
+	Corpus = []
+	for line in C.readlines():
+		Corpus1.append(line)
+	Corp = ""
+	for i in range(0,len(Corpus1)):
+		Corp = Corp + Corpus1[i]
+	Corpus = Corp.split()
+	Corpus = Corpus[:2000]
 	for i in range(0,len(Corpus)):
 		Corpus[i] = Corpus[i].lower()
+		Corpus[i] = Corpus[i].replace("\n","")
 		Corpus[i] = Corpus[i].replace(".","")
 		Corpus[i] = Corpus[i].replace(",","")
 		Corpus[i] = Corpus[i].replace(";","")
 		Corpus[i] = Corpus[i].replace("!","")
 		Corpus[i] = Corpus[i].replace("?","")
 		Corpus[i] = Corpus[i].replace(":","")
+		Corpus[i] = Corpus[i].replace("'","")
+		Corpus[i] = Corpus[i].replace("`","")
+		Corpus[i] = Corpus[i].replace("´","")
 	return Corpus
 
-C1 = open("Corpus1.txt")
-C2 = open("Corpus2.txt")
-Tst = open("Test.txt")
+C1 = open("12Atest06.txt")
+C2 = open("12Btest02.txt")
+Tst = open("12Atest01.txt")
 stopwords = open("Stopwordliste.txt")
 for line in stopwords:
 	stopwords = line.split()
-for line in C1:
-	C1 = prepareCorpus(C1)
-for line in C2:
-	C2 = prepareCorpus(C2)
-for line in Tst:
-	Tst = prepareCorpus(Tst)
+C1 = prepareCorpus(C1)
+C2 = prepareCorpus(C2)
+Tst = prepareCorpus(Tst)
+#stopwords = ["all","do", "like", "not", "they", "are", "the"]
 G1 = getStopWordGraph(C1, stopwords)
 G2 = getStopWordGraph(C2, stopwords)
 GTst = getStopWordGraph(Tst, stopwords)
