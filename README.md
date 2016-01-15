@@ -2,7 +2,7 @@
 
 This is a reimplementation of the approach to authorship attribution originally described in
 
-> R. Arun, V. Suresh, and C.E.V. Madhavan. [Stopword graphs and authorship attribution in text corpora](http://dx.doi.org/10.1109/ICSC.2009.101). In Proc. of the 3rd IEEE ICSC, pp. 192-196, 2009 [[paper](http://dx.doi.org/10.1109/ICSC.2009.101)]
+> R. Arun, V. Suresh, and C.E. Veni Madhavan. [Stopword graphs and authorship attribution in text corpora](http://dx.doi.org/10.1109/ICSC.2009.101). In Proc. of the 3rd IEEE ICSC, pp. 192-196, 2009 [[paper](http://dx.doi.org/10.1109/ICSC.2009.101)]
 
 It was reimplemented as part of a science reproducibility study alongside [14 other authorship attribution approaches](https://github.com/search?q="Who+wrote+the+web"+user:pan-webis-de). The results of the reproducibility study can be found in
 
