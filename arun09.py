@@ -58,7 +58,7 @@ def addStopword(Corpus, index, stopwords, Liste):
     return Liste
 
 #Input: Corpus in form of a list, list of stopwords
-#Output: Stopwordliste of the first n stopwords, that are in the corpus, less if there are less in there
+#Output: Stop words of the first n stopwords, that are in the corpus, less if there are less in there
 def createStopwordliste(Corpus, stopwords):
     Liste = []
     i = 0
@@ -70,7 +70,7 @@ def createStopwordliste(Corpus, stopwords):
 
 #adds a stopword at the end of the list of n stopwords as long as end of corpus is not reached
 #removes the first stopword in the list
-#Input: Cropus as list, stopwordlist of length n, list of stopwords
+#Input: Corpus as list, stop word list of length n, list of stopwords
 #Output: new list of stopwords of length n or less is end of corpus is reached
 def adjustStopwordliste(Corpus, Liste, stopwords):
     i = Liste[number-1][1]+1
@@ -153,7 +153,7 @@ def tira(corpusdir, outputdir):
     jsonhandler.loadJson(corpusdir)
     jsonhandler.loadTraining()    
     
-    stopwords = open("Stopwordliste.txt")
+    stopwords = open("stopwords.txt")
     logger.info("Reads in stopwords")
     for line in stopwords:
         stopwords = line.split()
