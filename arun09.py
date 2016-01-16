@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from copy import deepcopy
 import numpy as np
 import math
@@ -47,7 +49,7 @@ def prepareCorpus(C):
         Corpus[i] = Corpus[i].replace(":", "")
         Corpus[i] = Corpus[i].replace("'", "")
         Corpus[i] = Corpus[i].replace("`", "")
-        Corpus[i] = Corpus[i].replace("´", "")
+        Corpus[i] = Corpus[i].replace(u"´", "")
     return Corpus
 
 
